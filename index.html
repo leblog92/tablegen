@@ -10,11 +10,11 @@ height:99%;
 body{
 font-family:Consolas;
 font-size:11.5px;
-background:linear-gradient(90deg,royalblue,crimson);
+background:linear-gradient(45deg,royalblue,crimson);
 background-attachment:fixed;
 }
 table,td{
-border:1px solid black;
+border:1px solid grey;
 border-collapse:collapse;
 }
 table{
@@ -46,7 +46,7 @@ padding:8px;
 user-select: none;
 }
 @media print{
-	#div0,#div1{
+	#div0,#div1,#div2{
 	display:none;
 	}
 	tr{
@@ -69,12 +69,25 @@ color:#fff;
 button{
 height:2em;
 }
+#div2{
+position:fixed;
+right:8px;
+bottom:8px;
+}
+#kirby{
+width:64px;
+height:auto;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
 </style>
 </head>
 <body>
-<div id="div0"><h1>Advanced Calendar Creator</h4>
+<div id="div0"><h1>Flashy Advanced Calendar Creator™</h4>
 <input type="month" id="start" name="start" min="2021-05" value="2021-06">&nbsp;<button id="val">Valider</button> <button id="pri">Imprimer</button><hr></div>
 <div id="div1">Log</div>
+<div id="div2"><img id="kirby" src="kirby1.gif"/></div>
 <table class="allcopy">
 <tbody id="tb1">
 </tbody>
@@ -85,6 +98,7 @@ var d=dt.getDay();
 var m=dt.getMonth();
 var y=dt.getFullYear();
 var m1=m+1;
+var m2=m+2;
 var scan;
 var mo=["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
 var da=["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"];
@@ -97,10 +111,12 @@ var divl=document.getElementById("div1");
 var pri=document.getElementById("pri");
 var daysInMonth=function(month,year){return new Date(year,month,0).getDate();};
 if(m1<10){m1="0"+m1};
-console.log(d+"/"+m1+"/"+y);
+console.log(d+"/"+m+"/"+y);
 start.min=y+"-"+m1;
-start.value=y+"-"+m1;
+if(m2<10){m2="0"+m2};
+start.value=y+"-"+m2;
 val.addEventListener("click",tablegen);
+//document.body.style.background="fixed linear-gradient("+Math.floor(Math.random()*360)+"deg,rgb("+Math.floor(Math.random()*255)+","+Math.floor(Math.random()*255)+","+Math.floor(Math.random()*255)+"),rgb("+Math.floor(Math.random()*255)+","+Math.floor(Math.random()*255)+","+Math.floor(Math.random()*255)+"),rgb("+Math.floor(Math.random()*255)+","+Math.floor(Math.random()*255)+","+Math.floor(Math.random()*255)+")";
 function tablepri(){
 pri.removeEventListener("click",tablepri);
 pri.style.display="none";
@@ -133,7 +149,7 @@ function tablegen(){
 				tb1.innerHTML+="<tr class=\"trdate\"><td>📅 "+da[a]+" "+i+" "+mo[xm-1]+" "+xy+"</td><td class=\"mid\">🕒 15h00</td><td class=\"mid\">🕒 16h00</td><td class=\"mid\">🕒 17h00</td></tr>";
 				for(var j=1;j<8;j++){
 				if(j==1){scan=" / scanner"}else{scan=""};
-				tb1.innerHTML+="<tr><td>🖥️ poste "+j+scan+"</td><td contenteditable=\"true\"></td><td contenteditable=\"true\"></td><td contenteditable=\"true\"></td></tr>";
+				tb1.innerHTML+="<tr><td>🖥️ poste #"+j+scan+"</td><td contenteditable=\"true\"></td><td contenteditable=\"true\"></td><td contenteditable=\"true\"></td></tr>";
 				}
 			}
 		}
