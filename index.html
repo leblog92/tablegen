@@ -13,12 +13,18 @@ font-size:11.5px;
 background:linear-gradient(45deg,royalblue,crimson);
 background-attachment:fixed;
 }
+hr{
+margin-bottom:0;
+}
 table,td{
 border:1px solid grey;
 border-collapse:collapse;
 }
 table{
+margin-top:-8px;
 background-color:#fff;
+margin-left:auto;
+margin-right:auto;
 }
 td{
 padding:8px;
@@ -84,8 +90,8 @@ body::-webkit-scrollbar {
 </style>
 </head>
 <body>
-<div id="div0"><h1>Flashy Advanced Calendar Creator™</h4>
-<input type="month" id="start" name="start" min="2021-05" value="2021-06">&nbsp;<button id="val">Valider</button> <button id="pri">Imprimer</button><hr></div>
+<div id="div0"><h1>Flashy Advanced Calendar Creator™</h1>
+<input type="month" id="start" name="start" min="2021-05" value="2021-06">&nbsp;<button id="val">Valider</button> <button id="pri">Imprimer</button></div>
 <div id="div1">Log</div>
 <div id="div2"><img id="kirby" src="kirby1.gif"/></div>
 <table class="allcopy">
@@ -116,7 +122,6 @@ start.min=y+"-"+m1;
 if(m2<10){m2="0"+m2};
 start.value=y+"-"+m2;
 val.addEventListener("click",tablegen);
-//document.body.style.background="fixed linear-gradient("+Math.floor(Math.random()*360)+"deg,rgb("+Math.floor(Math.random()*255)+","+Math.floor(Math.random()*255)+","+Math.floor(Math.random()*255)+"),rgb("+Math.floor(Math.random()*255)+","+Math.floor(Math.random()*255)+","+Math.floor(Math.random()*255)+"),rgb("+Math.floor(Math.random()*255)+","+Math.floor(Math.random()*255)+","+Math.floor(Math.random()*255)+")";
 function tablepri(){
 pri.removeEventListener("click",tablepri);
 pri.style.display="none";
