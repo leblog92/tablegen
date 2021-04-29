@@ -2,33 +2,37 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<title>Inscriptions</title>
+<title>Calendrier Inscriptions</title>
 <style>
 body{
 font-family:Consolas;
 font-size:12px;
 }
 table,td{
-border:0.5px solid black;
+border:1px solid grey;
 border-collapse:collapse;
 }
 td{
-min-width:100px;
-height:40px;
+padding:8px;
+min-width:150px;
 }
 .mid{
 text-align:center;
 }
 #div1{
 position:fixed;
+background-color:white;
 top:8px;
 right:8px;
 text-align:right;
 }
+#div0,#div1{
+user-select: none;
+}
 </style>
 </head>
 <body>
-<input type="month" id="start" name="start" min="2021-05" value="2021-06">&nbsp;<button id="val">Valider</button><br><br>
+<div id="div0"><input type="month" id="start" name="start" min="2021-05" value="2021-06">&nbsp;<button id="val">Valider</button><hr></div>
 <div id="div1"></div>
 <table>
 <tbody id="tb1">
@@ -71,7 +75,7 @@ div1.innerHTML="input value: "+x+"<br>year: "+xy+" month: "+xmi+"<br>number of d
 					a=deng.indexOf(String(dti).substr(0,3));
 					tb1.innerHTML+="<tr><td>"+da[a]+" "+i+" "+mo[xm-1]+" "+xy+"</td><td class=\"mid\">15h00</td><td class=\"mid\">16h00</td><td class=\"mid\">17h00</td></tr>";
 					for(var j=1;j<8;j++){
-					tb1.innerHTML+="<tr><td>poste "+j+"</td><td></td><td></td><td></td></tr>";
+					tb1.innerHTML+="<tr><td>poste "+j+"</td><td contenteditable=\"true\"></td><td contenteditable=\"true\"></td><td contenteditable=\"true\"></td></tr>";
 				}
 			}
 		}
