@@ -4,20 +4,34 @@
 <meta charset="utf-8">
 <title>Calendrier Inscriptions</title>
 <style>
+html,body{
+height:99%;
+}
 body{
 font-family:Consolas;
-font-size:12px;
+font-size:11.5px;
+background:linear-gradient(90deg,royalblue,crimson);
+background-attachment:fixed;
 }
 table,td{
-border:1px solid grey;
+border:1px solid black;
 border-collapse:collapse;
+}
+table{
+background-color:#fff;
 }
 td{
 padding:8px;
-min-width:150px;
+min-width:125px;
 }
 .mid{
 text-align:center;
+}
+.allcopy{
+user-select:all;
+}
+#pri{
+display:none;
 }
 #div1{
 position:fixed;
@@ -25,16 +39,43 @@ background-color:white;
 top:8px;
 right:8px;
 text-align:right;
+border:1px solid grey;
+padding:8px;
 }
 #div0,#div1{
 user-select: none;
 }
+@media print{
+	#div0,#div1{
+	display:none;
+	}
+	tr{
+	page-break-inside:avoid;
+	}
+	body{
+	background:#fff;
+	}
+	table{
+	width:100%;
+	}
+}
+.trdate{
+background:linear-gradient(90deg,#ccc,#eee);
+font-weight:bold;
+}
+h1{
+color:#fff;
+}
+button{
+height:2em;
+}
 </style>
 </head>
 <body>
-<div id="div0"><input type="month" id="start" name="start" min="2021-05" value="2021-06">&nbsp;<button id="val">Valider</button><hr></div>
-<div id="div1"></div>
-<table>
+<div id="div0"><h1>Advanced Calendar Creator</h4>
+<input type="month" id="start" name="start" min="2021-05" value="2021-06">&nbsp;<button id="val">Valider</button> <button id="pri">Imprimer</button><hr></div>
+<div id="div1">Log</div>
+<table class="allcopy">
 <tbody id="tb1">
 </tbody>
 </table>
@@ -44,6 +85,7 @@ var d=dt.getDay();
 var m=dt.getMonth();
 var y=dt.getFullYear();
 var m1=m+1;
+var scan;
 var mo=["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
 var da=["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"];
 var deng=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
@@ -52,35 +94,50 @@ var start=document.getElementById("start");
 var tb1=document.getElementById("tb1");
 var val=document.getElementById("val");
 var divl=document.getElementById("div1");
+var pri=document.getElementById("pri");
 var daysInMonth=function(month,year){return new Date(year,month,0).getDate();};
 if(m1<10){m1="0"+m1};
 console.log(d+"/"+m1+"/"+y);
 start.min=y+"-"+m1;
 start.value=y+"-"+m1;
 val.addEventListener("click",tablegen);
-function tablegen(){
+function tablepri(){
+pri.removeEventListener("click",tablepri);
+pri.style.display="none";
+window.print();
 tb1.innerHTML="";
-x=start.value;
-xm=x.substr(x.length-2);
-xy=x.substr(0,4);
-if(xm<10){xmi=xm.substr(xm.length-1);}else{xmi=xm;}
-dt2=new Date(xy+","+(xmi)+",01");
-dim=daysInMonth(xm,xy);
-div1.innerHTML="input value: "+x+"<br>year: "+xy+" month: "+xmi+"<br>number of days: "+dim+"<br>";
+div1.innerHTML="";
+}
+function tablegen(){
+	tb1.innerHTML="";
+	pri.style.display="inline";
+	pri.addEventListener("click",tablepri);
+	x=start.value;
+	xm=x.substr(x.length-2);
+	xy=x.substr(0,4);
+		if(xm<10){
+			xmi=xm.substr(xm.length-1);
+		}else{
+			xmi=xm;
+		}
+	dt2=new Date(xy+","+(xmi)+",01");
+	dim=daysInMonth(xm,xy);
+	div1.innerHTML="Log<br>input value: "+x+"<br>year: "+xy+" month: "+xmi+"<br>number of days: "+dim+"<br>";
 	for(i=1;i<(dim+1);i++){
-			if(i<10){di="0"+i}else{di=i};
-			dti=new Date(xy+","+(xmi)+","+di);
-			div1.innerHTML+=String(dti).substr(0,15)+"<br>";
-				if(String(dti).substr(0,3)=="Mon"||String(dti).substr(0,3)=="Sun"){}else{
-					a=deng.indexOf(String(dti).substr(0,3));
-					tb1.innerHTML+="<tr><td>"+da[a]+" "+i+" "+mo[xm-1]+" "+xy+"</td><td class=\"mid\">15h00</td><td class=\"mid\">16h00</td><td class=\"mid\">17h00</td></tr>";
-					for(var j=1;j<8;j++){
-					tb1.innerHTML+="<tr><td>poste "+j+"</td><td contenteditable=\"true\"></td><td contenteditable=\"true\"></td><td contenteditable=\"true\"></td></tr>";
+		if(i<10){di="0"+i}else{di=i};
+		dti=new Date(xy+","+(xmi)+","+di);
+		div1.innerHTML+=String(dti).substr(0,15)+"<br>";
+			if(String(dti).substr(0,3)=="Mon"||String(dti).substr(0,3)=="Sun"){
+			}else{
+				a=deng.indexOf(String(dti).substr(0,3));
+				tb1.innerHTML+="<tr class=\"trdate\"><td>📅 "+da[a]+" "+i+" "+mo[xm-1]+" "+xy+"</td><td class=\"mid\">🕒 15h00</td><td class=\"mid\">🕒 16h00</td><td class=\"mid\">🕒 17h00</td></tr>";
+				for(var j=1;j<8;j++){
+				if(j==1){scan=" / scanner"}else{scan=""};
+				tb1.innerHTML+="<tr><td>🖥️ poste "+j+scan+"</td><td contenteditable=\"true\"></td><td contenteditable=\"true\"></td><td contenteditable=\"true\"></td></tr>";
 				}
 			}
 		}
 	}
-
 </script>
 </body>
 </html>
