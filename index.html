@@ -6,51 +6,77 @@
 <style>
 body{
 font-family:Consolas;
+font-size:12px;
 }
 table,td{
-border:1px solid black;
+border:0.5px solid black;
 border-collapse:collapse;
 }
 td{
 min-width:100px;
+height:40px;
 }
 .mid{
 text-align:center;
+}
+#div1{
+position:fixed;
+top:8px;
+right:8px;
+text-align:right;
 }
 </style>
 </head>
 <body>
 <input type="month" id="start" name="start" min="2021-05" value="2021-06">&nbsp;<button id="val">Valider</button><br><br>
+<div id="div1"></div>
 <table>
 <tbody id="tb1">
 </tbody>
 </table>
 <script>
-var d=new Date();
-var m=d.getMonth()+1;
-var y=d.getFullYear();
+var dt=new Date();
+var d=dt.getDay();
+var m=dt.getMonth();
+var y=dt.getFullYear();
+var m1=m+1;
+var mo=["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
+var da=["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"];
+var deng=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+var a,x,xmi,di,dti,i,j,dim,dt2;
 var start=document.getElementById("start");
 var tb1=document.getElementById("tb1");
 var val=document.getElementById("val");
-if(m<10){m="0"+m};
-console.log(y+"-"+m);
-start.min=y+"-"+m;
-start.value=y+"-"+m;
+var divl=document.getElementById("div1");
+var daysInMonth=function(month,year){return new Date(year,month,0).getDate();};
+if(m1<10){m1="0"+m1};
+console.log(d+"/"+m1+"/"+y);
+start.min=y+"-"+m1;
+start.value=y+"-"+m1;
 val.addEventListener("click",tablegen);
-
 function tablegen(){
-for(var i=1;i<32;i++){
-tb1.innerHTML+="<tr><td>mardi "+i+" mars 2021</td><td class=\"mid\">15h00</td><td class=\"mid\">16h00</td><td class=\"mid\">17h00</td></tr>";
-for(var j=1;j<8;j++){tb1.innerHTML+="<tr><td>poste "+j+"</td><td></td><td></td><td></td></tr>";}}}
-/*function NonbreJourMois(mois, annee){
-	var nbreJour = 0;	
-	if (mois <= 6){if (mois%2 == 0){nbreJour = 31;}else{nbreJour=30;}}
-	else{if (mois%2 == 1){nbreJour = 30;}else{nbreJour = 31;}}if (mois == 1){if(annee%4==0){if(annee%100==0){if(annee%400==0){nbreJour = 29;}
-	else{nbreJour = 28;}}
-    else{nbreJour = 29;}}
-	else{nbreJour = 28;}}
-	return nbreJour;
-}*/
+tb1.innerHTML="";
+x=start.value;
+xm=x.substr(x.length-2);
+xy=x.substr(0,4);
+if(xm<10){xmi=xm.substr(xm.length-1);}else{xmi=xm;}
+dt2=new Date(xy+","+(xmi)+",01");
+dim=daysInMonth(xm,xy);
+div1.innerHTML="input value: "+x+"<br>year: "+xy+" month: "+xmi+"<br>number of days: "+dim+"<br>";
+	for(i=1;i<(dim+1);i++){
+			if(i<10){di="0"+i}else{di=i};
+			dti=new Date(xy+","+(xmi)+","+di);
+			div1.innerHTML+=String(dti).substr(0,15)+"<br>";
+				if(String(dti).substr(0,3)=="Mon"||String(dti).substr(0,3)=="Sun"){}else{
+					a=deng.indexOf(String(dti).substr(0,3));
+					tb1.innerHTML+="<tr><td>"+da[a]+" "+i+" "+mo[xm-1]+" "+xy+"</td><td class=\"mid\">15h00</td><td class=\"mid\">16h00</td><td class=\"mid\">17h00</td></tr>";
+					for(var j=1;j<8;j++){
+					tb1.innerHTML+="<tr><td>poste "+j+"</td><td></td><td></td><td></td></tr>";
+				}
+			}
+		}
+	}
+
 </script>
 </body>
 </html>
