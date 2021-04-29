@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Inscriptions</title>
+<style>
+body{
+font-family:Consolas;
+}
+table,td{
+border:1px solid black;
+border-collapse:collapse;
+}
+td{
+min-width:100px;
+}
+</style>
+</head>
+<body>
+<input type="month" id="start" name="start" min="2021-05" value="2021-06">&nbsp;<button id="val">Valider</button><br><br>
+<table>
+<tbody>
+<tr><td>mardi 2 mars 2021</td><td>15h00</td><td>16h00</td><td>17h00</td></tr>
+<tr><td>poste 1</td><td></td><td></td><td></td></tr>
+<tr><td>poste 2</td><td></td><td></td><td></td></tr>
+<tr><td>poste 3</td><td></td><td></td><td></td></tr>
+<tr><td>poste 4</td><td></td><td></td><td></td></tr>
+<tr><td>poste 5</td><td></td><td></td><td></td></tr>
+<tr><td>poste 6</td><td></td><td></td><td></td></tr>
+<tr><td>poste 7</td><td></td><td></td><td></td></tr>
+</tbody>
+</table>
+<script>
+var d=new Date();
+var m=d.getMonth()+1;
+var y=d.getFullYear();
+var start=document.getElementById("start")
+if(m<10){m="0"+m};
+console.log(y+"-"+m);
+start.min=y+"-"+m;
+start.value=y+"-"+m;
+function NonbreJourMois(mois, annee){
+	var nbreJour = 0;	
+	if (mois <= 6){if (mois%2 == 0){nbreJour = 31;}else{nbreJour=30;}}
+	else{if (mois%2 == 1){nbreJour = 30;}else{nbreJour = 31;}}if (mois == 1){if(annee%4==0){if(annee%100==0){if(annee%400==0){nbreJour = 29;}
+	else{nbreJour = 28;}}
+    else{nbreJour = 29;}}
+	else{nbreJour = 28;}}
+	return nbreJour;
+}
+</script>
+</body>
+</html>
