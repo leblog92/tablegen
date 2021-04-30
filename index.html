@@ -2,7 +2,8 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<title>Calendrier Inscriptions</title>
+<title>Inscriptions Salles Multimedia</title>
+<link rel="icon" type="image/png" href="favicon.png">
 <style>
 html,body{
 height:99%;
@@ -10,8 +11,12 @@ height:99%;
 body{
 font-family:Consolas;
 font-size:11.5px;
-background:linear-gradient(45deg,royalblue,crimson);
+background:linear-gradient(125deg,royalblue,crimson);
 background-attachment:fixed;
+}
+input{
+text-align:center;
+width:270px;
 }
 hr{
 margin-bottom:0;
@@ -38,6 +43,11 @@ user-select:all;
 }
 #pri{
 display:none;
+}
+#div0{
+position:fixed;
+left:8px;
+top:8px;
 }
 #div1{
 position:fixed;
@@ -69,7 +79,8 @@ user-select: none;
 background:linear-gradient(90deg,#ccc,#eee);
 font-weight:bold;
 }
-h1{
+#tit{
+font-size:15px;
 color:#fff;
 }
 button{
@@ -87,11 +98,34 @@ height:auto;
 body::-webkit-scrollbar {
   display: none;
 }
+#svg1{
+width:275px;
+height:auto;
+}
 </style>
 </head>
 <body>
-<div id="div0"><h1>Flashy Advanced Calendar Creator™</h1>
-<input type="month" id="start" name="start" min="2021-05" value="2021-06">&nbsp;<button id="val">Valider</button> <button id="pri">Imprimer</button></div>
+<div id="div0">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 430 150" id="svg1">
+<defs>
+<mask id="hide">
+	<rect width="420" height="140" fill="#000"/>
+	<g fill="white">
+	<path id="facc" d="M 0.00,0.00 C 0.00,0.00 93.00,0.00 93.00,0.00 93.00,0.00 93.00,38.00 93.00,38.00 93.00,38.00 40.00,38.00 40.00,38.00 40.00,41.26 39.31,49.11 41.60,51.40 43.23,53.04 45.86,52.96 48.00,53.00 48.00,53.00 76.00,53.00 76.00,53.00 76.00,53.00 76.00,85.00 76.00,85.00 76.00,85.00 40.00,85.00 40.00,85.00 40.00,85.00 40.00,140.00 40.00,140.00 40.00,140.00 0.00,140.00 0.00,140.00 0.00,140.00 0.00,0.00 0.00,0.00 Z M 103.00,0.00 C 103.00,0.00 201.00,0.00 201.00,0.00 201.00,0.00 201.00,140.00 201.00,140.00 201.00,140.00 161.00,140.00 161.00,140.00 161.00,140.00 161.00,121.00 161.00,121.00 161.00,118.81 161.21,115.16 159.98,113.31 157.89,110.18 147.15,110.05 144.60,112.60 142.96,114.23 143.04,116.86 143.00,119.00 143.00,119.00 143.00,140.00 143.00,140.00 143.00,140.00 103.00,140.00 103.00,140.00 103.00,140.00 103.00,0.00 103.00,0.00 Z M 212.00,0.00 C 212.00,0.00 310.00,0.00 310.00,0.00 310.00,0.00 310.00,57.00 310.00,57.00 310.00,57.00 270.00,57.00 270.00,57.00 270.00,53.50 270.79,43.99 268.40,41.60 265.70,38.90 256.04,39.42 253.60,42.31 251.71,44.56 252.01,48.23 252.00,51.00 252.00,51.00 252.00,91.00 252.00,91.00 252.05,93.32 252.01,95.80 253.60,97.69 256.04,100.58 265.70,101.10 268.40,98.40 270.79,96.01 270.00,86.50 270.00,83.00 270.00,83.00 310.00,83.00 310.00,83.00 310.00,83.00 310.00,140.00 310.00,140.00 310.00,140.00 212.00,140.00 212.00,140.00 212.00,140.00 212.00,0.00 212.00,0.00 Z M 321.00,0.00 C 321.00,0.00 419.00,0.00 419.00,0.00 419.00,0.00 419.00,57.00 419.00,57.00 419.00,57.00 379.00,57.00 379.00,57.00 379.00,57.00 379.00,40.00 379.00,40.00 375.20,40.00 366.11,39.24 363.31,41.60 360.62,43.87 361.01,47.82 361.00,51.00 361.00,51.00 361.00,75.00 361.00,75.00 361.00,90.51 358.04,99.78 370.00,100.00 370.00,100.00 379.00,100.00 379.00,100.00 379.00,100.00 379.00,83.00 379.00,83.00 379.00,83.00 419.00,83.00 419.00,83.00 419.00,83.00 419.00,140.00 419.00,140.00 419.00,140.00 321.00,140.00 321.00,140.00 321.00,140.00 321.00,0.00 321.00,0.00 Z M 146.15,40.81 C 144.77,41.56 144.41,41.29 143.60,43.15 142.61,45.41 142.93,64.22 143.00,68.00 143.04,69.95 142.90,72.63 144.60,73.98 146.76,75.69 158.21,75.63 159.98,73.40 161.15,71.92 160.99,68.82 161.00,67.00 161.00,67.00 161.00,47.00 161.00,47.00 160.96,45.05 161.10,42.37 159.40,40.81 157.12,39.22 148.92,39.97 146.15,40.81 Z"/>
+	</g>
+</mask>
+</defs>
+<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#facc" transform="translate(5 5)" opacity="0.5"/>
+<g style="mask:url(#hide)">
+<g>
+<image x="0" y="0" width="470" height="338" xlink:href="sky.png"/>
+<image x="469" y="0" width="470" height="338" xlink:href="sky.png"/>
+<animateMotion begin="0s" dur="12s" repeatCount="indefinite" values="0,0;-470,0"/>
+</g>
+</g>
+</svg><br>
+<span id="tit">Flashy Advanced Calendar Creator™</span><br><br>
+<input onchange="tablegen()" type="month" id="start" name="start" min="" value="">&nbsp;<!--<button id="val">Valider</button>--><button id="pri">Imprimer</button></div>
 <div id="div1">Log</div>
 <div id="div2"><img id="kirby" src="kirby1.gif"/></div>
 <table class="allcopy">
@@ -105,11 +139,10 @@ var m=dt.getMonth();
 var y=dt.getFullYear();
 var m1=m+1;
 var m2=m+2;
-var scan;
 var mo=["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
 var da=["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"];
 var deng=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
-var a,x,xmi,di,dti,i,j,dim,dt2;
+var a,x,xmi,di,dti,i,j,dim,dt2,scan;
 var start=document.getElementById("start");
 var tb1=document.getElementById("tb1");
 var val=document.getElementById("val");
@@ -121,7 +154,8 @@ console.log(d+"/"+m+"/"+y);
 start.min=y+"-"+m1;
 if(m2<10){m2="0"+m2};
 start.value=y+"-"+m2;
-val.addEventListener("click",tablegen);
+//val.addEventListener("click",tablegen);
+//val.addEventListener("onchange",tablegen);
 function tablepri(){
 pri.removeEventListener("click",tablepri);
 pri.style.display="none";
