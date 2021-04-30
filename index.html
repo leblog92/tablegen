@@ -138,7 +138,6 @@ var d=dt.getDay();
 var m=dt.getMonth();
 var y=dt.getFullYear();
 var m1=m+1;
-var m2=m+2;
 var mo=["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
 var da=["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"];
 var deng=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
@@ -152,8 +151,7 @@ var daysInMonth=function(month,year){return new Date(year,month,0).getDate();};
 if(m1<10){m1="0"+m1};
 console.log(d+"/"+m+"/"+y);
 start.min=y+"-"+m1;
-if(m2<10){m2="0"+m2};
-start.value=y+"-"+m2;
+start.value=y+"-"+m1;
 //val.addEventListener("click",tablegen);
 //val.addEventListener("onchange",tablegen);
 function tablepri(){
